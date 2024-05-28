@@ -1,16 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script
-    src="https://unpkg.com/htmx.org@1.9.12" 
-    integrity="sha384-ujb1lZYygJmzgSwoxRggbCHcjc0rB2XoQrxeTUQyRjrOnlCoYta87iKBWq3EsdM2" 
-    crossorigin="anonymous"
-  ></script>
-  <title>{% block title %}{{ title }} - My Site{% endblock %}</title>
-</head>
-<body>
-  {% block content %}<p>Placeholder content</p>{% endblock %}
-</body>
-</html>
+{% extends "layout.html" %}
+{% block title %}Todo List{% endblock %}
+
+{% block content %}
+<h1 id="title" class="text-4xl font-bold">Todo List</h1>
+
+<form
+  hx-post="/todos"
+  hx-target="#todos"
+  hx-swap="beforeend"
+>
+  <input class="border border-black" type="text" placeholder="Title" name="title"/>
+  <input class="border border-black" type="text" placeholder="Description" name="description"/>
+  <input type="submit" value="Add Task" class="bg-blue-700 text-white p-2 rounded-xl"/>
+</form>
+
+<table id="todos" class="w-full p-2 bg-gray-100">
+  <tr>
+    <th>Name/Description</th>
+    <th>Complete</th>
+    <th>Delete</th>
+  </tr>
+  {% for todo in todos %}
+  {% include "todo.html" %}
+  {% endfor %}
+</table>
+{% endblock %}

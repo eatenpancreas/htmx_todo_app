@@ -1,0 +1,14 @@
+<tr id="todo-item-{{ todo.id }}" class="border border-black">
+  <td>
+    <span class="mr-2 text-xl font-bold">{{ todo.title }}</span>
+    {{ todo.description }}
+  </td>
+
+  <td class="flex justify-center items-center h-8">
+    {% if todo.completed %}
+    <input name="completed" hx-post="todos/{{ todo.id }}/complete" hx-trigger="click" type="checkbox" checked>
+    {% else %}
+    <input name="completed" hx-post="todos/{{ todo.id }}/complete" hx-trigger="click" type="checkbox">
+    {% endif %}
+  </td>
+</tr>
