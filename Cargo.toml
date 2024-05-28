@@ -1,0 +1,15 @@
+[package]
+name = "lukewarm"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tokio = "1.37.0"
+axum = "0.7.5"
+askama = { version = "0.12.1", features = ["with-axum"] }
+askama_axum = "0.4.0"
+shuttle-axum = "0.45.0"
+shuttle-runtime = "0.45.0"
+shuttle-shared-db = { version = "0.45.0", features = ["postgres", "sqlx"] }
+sqlx = { version = "0.7.4", features = ["postgres"] }
+serde = { version = "1.0.203", features = ["derive"] }
